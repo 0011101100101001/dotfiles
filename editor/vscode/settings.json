@@ -1,0 +1,43 @@
+{
+    "settingsSync.ignoredSettings": [
+        "-window.zoomLevel"
+    ],
+    "editor.minimap.enabled": false,
+    "files.autoSave": "afterDelay",
+    "github.copilot.editor.enableAutoCompletions": false,
+    "editor.detectIndentation": false,
+    "editor.rulers": [
+        80
+    ],
+    "telemetry.telemetryLevel": "off",
+    "workbench.colorTheme": "Tokyo Night",
+    "git.openRepositoryInParentFolders": "never",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "editor.cursorBlinking": "smooth",
+    "editor.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.smoothScrolling": true,
+    "workbench.list.smoothScrolling": true,
+    "editor.renderWhitespace": "all",
+    "editor.fontFamily": "'FiraMono Nerd Font Mono', monospace",
+    "terminal.integrated.fontFamily": "monospace",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "workbench.editor.empty.hint": "hidden",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "terminal.integrated.initialHint": false,
+    "editor.fontSize": 13,
+    "codesnap.showWindowControls": false,
+    "svelte.enable-ts-plugin": true,
+    "workbench.preferredDarkColorTheme": "Tokyo Night",
+    "claudeCode.preferredLocation": "panel",
+    "chat.tips.enabled": false
+}
