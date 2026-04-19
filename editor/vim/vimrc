@@ -1,0 +1,65 @@
+" --- Vim-Plug ---
+
+call plug#begin()
+
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+
+" Navigation
+Plug 'preservim/nerdtree'
+
+" UI
+Plug 'vim-airline/vim-airline'
+Plug 'ghifarit53/tokyonight-vim'
+
+call plug#end()
+
+" --- General Settings ---
+"
+set termguicolors
+
+" Set the colorscheme
+colorscheme tokyonight
+let g:tokyonight_transparent_background = 1
+
+" Enable line numbers
+set number
+
+" Use relative line numbers
+" (Helps with jumping lines: e.g., '5j' to move down 5 lines)
+set relativenumber
+
+" --- Indentation ---
+
+" Use 4 spaces for a tab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+" Expand tabs into spaces
+set expandtab
+
+" Smart indentation for C-like languages
+set smartindent
+
+" --- UI and Highlighting ---
+
+" Highlight the 80th column
+set colorcolumn=80
+
+" Optional: Set the color of the column (e.g., dark gray)
+highlight ColorColumn ctermbg=235 guibg=#2c2c2c
+
+" Enable syntax highlighting
+syntax on
+
+" --- Convenience ---
+
+" Highlight search results
+set hlsearch
+
+" Show the cursor position in the bottom right
+set ruler
+
