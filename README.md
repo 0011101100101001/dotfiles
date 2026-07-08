@@ -9,3 +9,8 @@
 [ Configuration files ]
 </pre>
 </div>
+
+### Install
+```sh
+curl -fsSL https://raw.githubusercontent.com/0011101100101001/dotfiles/main/install.sh | bash
+```
