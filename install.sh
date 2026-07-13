@@ -34,9 +34,13 @@ git clone https://github.com/0011101100101001/dotfiles.git "$DOTFILES_DIR"
 cd "$DOTFILES_DIR"
 CONFIG_DIR="$HOME/.config"
 mkdir -p "$CONFIG_DIR"
-for config_category in terminal editor; do
+for config_category in editor shell terminal; do
   for config in "$config_category"/*; do
-    config=$(basename "$config")
+
+    if [[ $config_category != "shell" ]]; then
+      config=$(basename "$config")
+    fi
+
     CONFIG_PATH="$CONFIG_DIR/$config"
     if [[ -d "$CONFIG_PATH" ]]; then
       echo -e \
@@ -74,7 +78,8 @@ case "$(basename "$SHELL")" in
 "bash" | "zsh")
   SHELL_RC="$HOME/.$(basename "$SHELL")rc"
   if ! grep "alias.conf" "$SHELL_RC"; then
-    echo "source $DOTFILES_DIR/alias.conf" >>"$SHELL_RC"
+    echo "source $DOTFILES_DIR/shell/alias.conf" >>"$SHELL_RC"
+    source "$SHELLRC"
   fi
   ;;
 
