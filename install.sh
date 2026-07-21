@@ -74,9 +74,9 @@ done
 
 case "$(basename "$SHELL")" in
 "bash" | "zsh")
-  SHELL_RC="$HOME/.$(basename "$SHELL")rc"
-  if ! grep "alias.conf" "$SHELL_RC"; then
-    echo "source $DOTFILES_DIR/shell/alias.conf" >>"$SHELL_RC"
+  SHELLRC="$HOME/.$(basename "$SHELL")rc"
+  if ! grep "alias.conf" "$SHELLRC"; then
+    echo "source $DOTFILES_DIR/shell/alias.conf" >>"$SHELLRC"
     source "$SHELLRC"
   else
     echo "Alias already setup "
@@ -84,7 +84,7 @@ case "$(basename "$SHELL")" in
   ;;
 
 "fish")
-  SHELL_RC="$HOME/.$(basename "$SHELL").fish"
+  SHELLRC="$HOME/.$(basename "$SHELL").fish"
   if [[ -f "$HOME/.config/fish/alias.fish" ]]; then
     rm -rf "$HOME/.config/fish/alias.fish"
   fi
