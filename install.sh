@@ -146,9 +146,7 @@ case "$1" in
     echo "$USAGE"
     exit 1
     ;;
-esac
-
-' >"$DOTFILES_BIN"
+esac' >"$DOTFILES_BIN"
 
 chmod u+x "$DOTFILES_BIN"
 
