@@ -37,37 +37,41 @@ CONFIG_DIR="$HOME/.config"
 mkdir -p "$CONFIG_DIR"
 for config_category in editor shell terminal; do
   for config in "$config_category"/*; do
+    program=$(basename "$(dirname "$config")")
+    if [[ "$program" = "shell" ]] || command -v "$program"; then
+      config=$(basename "$config")
+      CONFIG_PATH="$CONFIG_DIR/$config"
+      if [[ -d "$CONFIG_PATH" || -f "$CONFIG_PATH" ]]; then
+        echo -e \
+          "$config already present, which action to perform? [o/b/p]\n" \
+          "   o: override\n" \
+          "   b: backup\n" \
+          "   p: pass"
 
-    config=$(basename "$config")
-    CONFIG_PATH="$CONFIG_DIR/$config"
-    if [[ -d "$CONFIG_PATH" || -f "$CONFIG_PATH" ]]; then
-      echo -e \
-        "$config already present, which action to perform? [o/b/p]\n" \
-        "   o: override\n" \
-        "   b: backup\n" \
-        "   p: pass"
-
-      while true; do
-        read -r answer </dev/tty
-        case "$answer" in
-        o | O)
-          rm -rf "$CONFIG_PATH"
-          ln -s "$DOTFILES_DIR/$config_category/$config" "$CONFIG_PATH"
-          break
-          ;;
-        b | B)
-          mv "$CONFIG_PATH" "$CONFIG_PATH.bk"
-          ln -s "$DOTFILES_DIR/$config_category/$config" "$CONFIG_PATH"
-          break
-          ;;
-        p | P)
-          break
-          ;;
-        esac
-      done
-      echo
+        while true; do
+          read -r answer </dev/tty
+          case "$answer" in
+          o | O)
+            rm -rf "$CONFIG_PATH"
+            ln -s "$DOTFILES_DIR/$config_category/$config" "$CONFIG_PATH"
+            break
+            ;;
+          b | B)
+            mv "$CONFIG_PATH" "$CONFIG_PATH.bk"
+            ln -s "$DOTFILES_DIR/$config_category/$config" "$CONFIG_PATH"
+            break
+            ;;
+          p | P)
+            break
+            ;;
+          esac
+        done
+        echo
+      else
+        ln -s "$DOTFILES_DIR/$config_category/$config" "$CONFIG_PATH"
+      fi
     else
-      ln -s "$DOTFILES_DIR/$config_category/$config" "$CONFIG_PATH"
+      echo "$program not installed"
     fi
   done
 done
@@ -106,7 +110,6 @@ if command -v dotfiles >/dev/null; then
       rm -f "$DOTFILES_BIN"
       break
       ;;
-
     n | N)
       exit 0
       ;;
