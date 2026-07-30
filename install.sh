@@ -2,13 +2,23 @@
 
 set -euo pipefail
 
+RESET="\033[0m"
+BOLD="\033[1m"
+RED="\033[31m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+BLUE="\033[34m"
+MAGENTA="\033[35m"
+CYAN="\033[36m"
+WHITE="\033[37m"
+
 DOTFILES_DIR="$HOME/.dotfiles"
 if [[ -d "$DOTFILES_DIR" ]]; then
   echo -e \
-    "Dotfiles directory already present. Override it? [y/u/q]\n" \
-    "   y: yes\n" \
-    "   u: update\n" \
-    "   q: quit"
+    "${BOLD}${WHITE}Dotfiles directory already present. ${YELLOW}Override? ${BLUE}[y/u/q]\n" \
+    "   ${BOLD}${BLUE}u: ${RESET}update\n" \
+    "   ${BOLD}${BLUE}y: ${RESET}yes\n" \
+    "   ${BOLD}${BLUE}q: ${RESET}quit"
   while true; do
     read -r answer </dev/tty
     case "$answer" in
@@ -37,28 +47,28 @@ CONFIG_DIR="$HOME/.config"
 mkdir -p "$CONFIG_DIR"
 for config_category in editor shell terminal; do
   for config in "$config_category"/*; do
-    program=$(basename "$(dirname "$config")")
-    if [[ "$program" = "shell" ]] || command -v "$program"; then
-      config=$(basename "$config")
-      CONFIG_PATH="$CONFIG_DIR/$config"
-      if [[ -d "$CONFIG_PATH" || -f "$CONFIG_PATH" ]]; then
+    config=$(basename "$config")
+    if [[ "$config" = "alias.conf" ]] || command -v "$config" >/dev/null; then
+      CONFIG_PATH_DST="$CONFIG_DIR/$config"
+      if [[ -d "$CONFIG_PATH_DST" || -f "$CONFIG_PATH_DST" ]]; then
         echo -e \
-          "$config already present, which action to perform? [o/b/p]\n" \
-          "   o: override\n" \
-          "   b: backup\n" \
-          "   p: pass"
+          "${BOLD}${MAGENTA}${config^} ${WHITE}already present, which action to perform? ${BLUE}[o/b/p]\n" \
+          "   ${BOLD}${BLUE}o: ${RESET}override\n" \
+          "   ${BOLD}${BLUE}b: ${RESET}backup\n" \
+          "   ${BOLD}${BLUE}p: ${RESET}pass"
 
+        CONFIG_PATH_SRC="$DOTFILES_DIR/$config_category/$config"
         while true; do
           read -r answer </dev/tty
           case "$answer" in
           o | O)
-            rm -rf "$CONFIG_PATH"
-            ln -s "$DOTFILES_DIR/$config_category/$config" "$CONFIG_PATH"
+            rm -rf "$CONFIG_PATH_DST"
+            ln -s "$CONFIG_PATH_SRC" "$CONFIG_PATH_DST"
             break
             ;;
           b | B)
-            mv "$CONFIG_PATH" "$CONFIG_PATH.bk"
-            ln -s "$DOTFILES_DIR/$config_category/$config" "$CONFIG_PATH"
+            mv "$CONFIG_PATH_DST" "$CONFIG_PATH_DST.bk"
+            ln -s "$CONFIG_PATH_SRC" "$CONFIG_PATH_DST"
             break
             ;;
           p | P)
@@ -68,10 +78,10 @@ for config_category in editor shell terminal; do
         done
         echo
       else
-        ln -s "$DOTFILES_DIR/$config_category/$config" "$CONFIG_PATH"
+        ln -s "$CONFIG_PATH_SRC" "$CONFIG_PATH_DST"
       fi
     else
-      echo "$program not installed"
+      echo -e "${BOLD}${MAGENTA}${config^} ${WHITE}not installed.${RESET}\n"
     fi
   done
 done
@@ -83,7 +93,7 @@ case "$(basename "$SHELL")" in
     echo "source $DOTFILES_DIR/shell/alias.conf" >>"$SHELLRC"
     source "$SHELLRC"
   else
-    echo "Alias already setup "
+    echo -e "${BOLD}${MAGENTA}Aliases ${WHITE}already setup.${RESET}"
   fi
   ;;
 
@@ -100,9 +110,9 @@ DOTFILES_BIN_DIR="$HOME/.local/bin"
 DOTFILES_BIN="$DOTFILES_BIN_DIR/dotfiles"
 if command -v dotfiles >/dev/null; then
   echo -e \
-    "Dotfiles binary already installed, override it? [y/n]\n" \
-    "   y: yes\n" \
-    "   n: no"
+    "${BOLD}${WHITE}Dotfiles binary already installed. ${YELLOW}Override? ${BLUE}[y/n]\n" \
+    "   ${BOLD}${BLUE}y: ${RESET}yes\n" \
+    "   ${BOLD}${BLUE}n: ${RESET}no"
   while true; do
     read -r answer </dev/tty
     case "$answer" in
@@ -111,6 +121,7 @@ if command -v dotfiles >/dev/null; then
       break
       ;;
     n | N)
+      echo -e "${BOLD}${GREEN}Done!${RESET}"
       exit 0
       ;;
     esac
@@ -153,4 +164,4 @@ esac' >"$DOTFILES_BIN"
 
 chmod u+x "$DOTFILES_BIN"
 
-echo "Dotfiles installation done!"
+echo -e "${BOLD}${GREEN}Done!${RESET}"
