@@ -1,10 +1,8 @@
 [general]
-import = [
-    "~/.config/alacritty/themes/themes/tokyo_night.toml"
-]
+import = ["~/.config/alacritty/themes/themes/tokyo_night.toml"]
 
 [window]
-opacity = 0.8
+opacity = 1
 decorations = "None"
 startup_mode = "Maximized"
 
@@ -40,4 +38,3 @@ blue = '#8db0ff'
 magenta = '#c7a9ff'
 cyan = '#a4daff'
 white = '#c0caf5'
-
