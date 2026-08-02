@@ -64,12 +64,12 @@ for config_category in editor shell terminal; do
           case "$answer" in
           o | O)
             rm -rf "$CONFIG_PATH_DST"
-            ln -s "$CONFIG_PATH_SRC" "$CONFIG_PATH_DST"
+            ln -sv "$CONFIG_PATH_SRC" "$CONFIG_PATH_DST"
             break
             ;;
           b | B)
             mv "$CONFIG_PATH_DST" "$CONFIG_PATH_DST.bk"
-            ln -s "$CONFIG_PATH_SRC" "$CONFIG_PATH_DST"
+            ln -sv "$CONFIG_PATH_SRC" "$CONFIG_PATH_DST"
             break
             ;;
           p | P)
@@ -78,7 +78,7 @@ for config_category in editor shell terminal; do
           esac
         done
       else
-        ln -s "$CONFIG_PATH_SRC" "$CONFIG_PATH_DST"
+        ln -sv "$CONFIG_PATH_SRC" "$CONFIG_PATH_DST"
       fi
     else
       echo -e "${BOLD}${MAGENTA}${config^} ${WHITE}not installed.${RESET}"
@@ -113,7 +113,8 @@ FONT_DIR_DST="$HOME/.local/share/fonts"
 mkdir -p "$FONT_DIR_DST"
 for font in font/*; do
   FONT_PATH_SRC="$DOTFILES_DIR/$font"
-  FONT_PATH_DST="$FONT_DIR_DST/$(basename $font)"
+  font=$(basename $font)
+  FONT_PATH_DST="$FONT_DIR_DST/$font"
   if [[ -d "$FONT_PATH_DST" ]]; then
     echo -e \
       "${BOLD}${MAGENTA}$(basename $font) ${WHITE}already present, which action to perform? ${BLUE}[o/p]\n" \
@@ -125,7 +126,7 @@ for font in font/*; do
       case "$answer" in
       o | O)
         rm -rf "$FONT_PATH_DST"
-        ln -s "$FONT_PATH_SRC" "$FONT_PATH_DST"
+        ln -sv "$FONT_PATH_SRC" "$FONT_PATH_DST"
         break
         ;;
       p | P)
@@ -134,7 +135,7 @@ for font in font/*; do
       esac
     done
   else
-    ln -s "$FONT_PATH_SRC" "$FONT_PATH_DST"
+    ln -sv "$FONT_PATH_SRC" "$FONT_PATH_DST"
   fi
   echo
 done
