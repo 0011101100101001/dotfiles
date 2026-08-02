@@ -122,7 +122,7 @@ for font in font/*; do
       "   ${BOLD}${BLUE}p: ${RESET}pass"
 
     while true; do
-      read -r answer
+      read -r answer </dev/tty
       case "$answer" in
       o | O)
         rm -rf "$FONT_PATH_DST"
