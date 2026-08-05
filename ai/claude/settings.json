@@ -1,5 +1,6 @@
 {
+  "effortLevel": "high",
   "model": "opus",
-  "theme": "dark",
-  "outputStyle": "Explanatory"
+  "outputStyle": "Explanatory",
+  "theme": "dark"
 }
