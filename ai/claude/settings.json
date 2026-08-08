@@ -4,6 +4,7 @@
   "outputStyle": "Explanatory",
   "permissions": {
     "allow": [
+      "WebFetch",
       "WebSearch"
     ]
   },
