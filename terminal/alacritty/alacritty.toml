@@ -6,6 +6,9 @@ opacity = 1
 decorations = "None"
 startup_mode = "Maximized"
 
+[font]
+size = 10
+
 # -----------------------------------------------------------------------------
 # TokyoNight Alacritty Colors
 # Theme: Tokyo Night
