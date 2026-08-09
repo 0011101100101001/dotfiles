@@ -51,6 +51,7 @@ for config_category in editor shell terminal; do
     config=$(basename "$config")
     if [[ "$config" = "alias.conf" ]] || command -v "$config" >/dev/null; then
       CONFIG_PATH_DST="$CONFIG_DIR/$config"
+      CONFIG_PATH_SRC="$DOTFILES_DIR/$config_category/$config"
       if [[ -d "$CONFIG_PATH_DST" || -f "$CONFIG_PATH_DST" ]]; then
         echo -e \
           "${BOLD}${MAGENTA}${config^} ${WHITE}already present, which action to perform? ${BLUE}[o/b/p]\n" \
@@ -58,7 +59,6 @@ for config_category in editor shell terminal; do
           "   ${BOLD}${BLUE}b: ${RESET}backup\n" \
           "   ${BOLD}${BLUE}p: ${RESET}pass"
 
-        CONFIG_PATH_SRC="$DOTFILES_DIR/$config_category/$config"
         while true; do
           read -r answer </dev/tty
           case "$answer" in
