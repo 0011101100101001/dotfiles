@@ -1,6 +1,7 @@
 [global_config]
   enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, TerminatorThemes
   ask_before_closing = never
+  borderless = True
 [keybindings]
 [profiles]
   [[default]]
