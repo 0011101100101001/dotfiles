@@ -1,8 +1,11 @@
 {
   "effortLevel": "high",
   "model": "opus",
+  "defaultMode": "plan",
   "outputStyle": "Explanatory",
   "permissions": {
+    "defaultMode": "dontAsk",
+    "disableBypassPermissionsMode": "disable",
     "allow": [
       "WebFetch",
       "WebSearch"
