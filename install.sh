@@ -88,6 +88,8 @@ if [[ -d "$DOTFILES_DIR" ]]; then
       ;;
     esac
   done
+else
+  git clone https://github.com/0011101100101001/dotfiles.git "$DOTFILES_DIR"
 fi
 echo
 
