@@ -4,13 +4,39 @@
     ],
     "editor.minimap.enabled": false,
     "files.autoSave": "afterDelay",
-    "github.copilot.editor.enableAutoCompletions": false,
     "editor.detectIndentation": false,
     "editor.rulers": [
         80
     ],
     "telemetry.telemetryLevel": "off",
     "workbench.colorTheme": "Tokyo Night",
+    "workbench.colorCustomizations": {
+        "[Tokyo Night]": {
+            "editor.background": "#000000",
+            "sideBar.background": "#030303",
+            "activityBar.background": "#000000",
+            "panel.background": "#030303",
+            "terminal.background": "#000000",
+
+            "editorGroupHeader.tabsBackground": "#030303",
+            "tab.activeBackground": "#080808",
+            "tab.inactiveBackground": "#000000",
+
+            "statusBar.background": "#050505",
+            "titleBar.activeBackground": "#030303",
+
+            "sideBar.border": "#202028",
+            "panel.border": "#202028",
+            "editorGroup.border": "#202028",
+            "terminal.border": "#202028",
+            "activityBar.border": "#202028",
+            "statusBar.border": "#202028",
+            "titleBar.border": "#202028",
+
+            "editor.selectionBackground": "#181818",
+            "editorCursor.foreground": "#7aa2f7"
+        }
+    },
     "git.openRepositoryInParentFolders": "never",
     "liveServer.settings.donotShowInfoMsg": true,
     "editor.cursorBlinking": "smooth",
@@ -20,8 +46,8 @@
     "terminal.integrated.smoothScrolling": true,
     "workbench.list.smoothScrolling": true,
     "editor.renderWhitespace": "all",
-    "editor.fontFamily": "'FiraMono Nerd Font Mono', monospace",
-    "terminal.integrated.fontFamily": "monospace",
+    "editor.fontFamily": "'FiraMono Nerd Font Mono'",
+    "terminal.integrated.fontFamily": "FiraMono Nerd Font Mono",
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "github.copilot.enable": {
@@ -31,7 +57,6 @@
         "scminput": false
     },
     "workbench.editor.empty.hint": "hidden",
-    "javascript.updateImportsOnFileMove.enabled": "always",
     "github.copilot.nextEditSuggestions.enabled": true,
     "terminal.integrated.initialHint": false,
     "editor.fontSize": 13,
@@ -39,5 +64,10 @@
     "svelte.enable-ts-plugin": true,
     "workbench.preferredDarkColorTheme": "Tokyo Night",
     "claudeCode.preferredLocation": "panel",
-    "chat.tips.enabled": false
+    "chat.tips.enabled": false,
+    "claudeCode.useTerminal": true,
+    "window.autoDetectColorScheme": true,
+    "workbench.preferredLightColorTheme": "Tokyo Night Light",
+    "terminal.integrated.mouseWheelScrollSensitivity": 3,
+    "terminal.integrated.gpuAcceleration": "off",
 }
