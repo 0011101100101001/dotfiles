@@ -99,33 +99,37 @@ CONFIG_DIR="$HOME/.config"
 mkdir -p "$CONFIG_DIR"
 
 # Font
-echo -e "----------------------------------------"
+echo "----------------------------------------"
 echo -e "${BOLD}${BLUE}" \
   "╔═╗╔═╗╔╗╔╔╦╗\n" \
   "╠╣ ║ ║║║║ ║ \n" \
   "╚  ╚═╝╝╚╝ ╩\n${RESET}"
 
-readonly FONT_DIR_DST="$HOME/.local/share/fonts"
-mkdir -p "$FONT_DIR_DST"
-for font in font/*; do
-  FONT_PATH_SRC="$DOTFILES_DIR/$font"
-  font=${font##*/}
-  FONT_PATH_DST="$FONT_DIR_DST/$font"
-  echo -e "${BOLD}${MAGENTA}${UNDERLINE}$font${RESET}"
-  manage_config_install "$FONT_PATH_SRC" "$FONT_PATH_DST"
-  echo
-done
-fc-cache -v "$FONT_DIR_DST"/* &>/dev/null
+if [[ -n "${WSL_DISTRO_NAME:-}" ]]; then
+  echo -e "${MAGENTA}WSL ${BOLD}${WHITE}detected, skipping fonts installation for now.\n"
+else
+  readonly FONT_DIR_DST="$HOME/.local/share/fonts"
+  mkdir -p "$FONT_DIR_DST"
+  for font in font/*; do
+    FONT_PATH_SRC="$DOTFILES_DIR/$font"
+    font=${font##*/}
+    FONT_PATH_DST="$FONT_DIR_DST/$font"
+    echo -e "${BOLD}${MAGENTA}${UNDERLINE}$font${RESET}"
+    manage_config_install "$FONT_PATH_SRC" "$FONT_PATH_DST"
+    echo
+  done
+  fc-cache -v "$FONT_DIR_DST"/* &>/dev/null
+fi
 
 # TODO: implement shell installation logic
-# echo -e "----------------------------------------"
+# echo "----------------------------------------"
 # echo -e "${BOLD}${BLUE}" \
 #   "╔═╗╦ ╦╔═╗╦  ╦  \n" \
 #   "╚═╗╠═╣║╣ ║  ║  \n" \
 #   "╚═╝╩ ╩╚═╝╩═╝╩═╝\n${RESET}"
 
 # Alias
-echo -e "----------------------------------------"
+echo "----------------------------------------"
 echo -e "${BOLD}${BLUE}" \
   "╔═╗╦  ╦╔═╗╔═╗\n" \
   "╠═╣║  ║╠═╣╚═╗\n" \
@@ -159,7 +163,7 @@ esac
 echo
 
 # Terminal
-echo -e "----------------------------------------"
+echo "----------------------------------------"
 echo -e "${BOLD}${BLUE}" \
   "╔╦╗╔═╗╦═╗╔╦╗╦╔╗╔╔═╗╦  \n" \
   " ║ ║╣ ╠╦╝║║║║║║║╠═╣║  \n" \
@@ -179,7 +183,7 @@ for config in terminal/*; do
 done
 
 # Editor
-echo -e "----------------------------------------"
+echo "----------------------------------------"
 echo -e "${BOLD}${BLUE}" \
   "╔═╗╔╦╗╦╔╦╗╔═╗╦═╗\n" \
   "║╣  ║║║ ║ ║ ║╠╦╝\n" \
@@ -199,7 +203,7 @@ for config in editor/*; do
 done
 
 # AI
-echo -e "----------------------------------------"
+echo "----------------------------------------"
 echo -e "${BOLD}${BLUE}" \
   "╔═╗╦\n" \
   "╠═╣║\n" \
@@ -223,20 +227,20 @@ for config_dir in ai/*; do
       echo
     done
   else
-    echo -e "${BOLD}${WHITE}Not installed.${RESET}"
+    echo -e "${BOLD}${WHITE}Not installed.${RESET}\n"
   fi
   ((++i))
 done
 
 # TODO: implement boot installation logic
-# echo -e "----------------------------------------"
+# echo "----------------------------------------"
 # echo -e "${BOLD}${BLUE}" \
 #   "╔╗ ╔═╗╔═╗╔╦╗\n" \
 #   "╠╩╗║ ║║ ║ ║ \n" \
 #   "╚═╝╚═╝╚═╝ ╩${RESET}"
 
 # Setup dotfiles binary
-echo -e "----------------------------------------"
+echo "----------------------------------------"
 echo -e "${BOLD}${BLUE}" \
   "╔╗ ╦╔╗╔╔═╗╦═╗╦ ╦\n" \
   "╠╩╗║║║║╠═╣╠╦╝╚╦╝\n" \
@@ -264,7 +268,7 @@ if command -v dotfiles >/dev/null; then
   done
 fi
 
-echo -e "Installing dotfiles binary...\n"
+echo "Installing dotfiles binary...\n"
 mkdir -p "$DOTFILES_BIN_DIR"
 echo \
   '#!/bin/bash
