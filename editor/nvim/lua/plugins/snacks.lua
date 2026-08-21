@@ -12,5 +12,13 @@ return {
 ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝]],
       },
     },
+    picker = {
+      sources = {
+        explorer = {
+          hidden = true,
+          ignored = true,
+        },
+      },
+    },
   },
 }
